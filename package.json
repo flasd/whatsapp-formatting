@@ -1,5 +1,5 @@
 {
-  "name": "whatsapp-formatting",
+  "name": "@flasd/whatsapp-formatting",
   "version": "0.1.0",
   "description": "WhatsApp allows you to format selected text inside your messages.",
   "repository": "https://github.com/flasd/whatsapp-formatting.git",
