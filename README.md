@@ -1,4 +1,8 @@
 # whatsapp formatting for the web
+[![Build Status](https://travis-ci.org/flasd/whatsapp-formatting.svg?branch=master)](https://travis-ci.org/flasd/whatsapp-formatting)
+[![Coverage Status](https://coveralls.io/repos/github/flasd/whatsapp-formatting/badge.svg?branch=master)](https://coveralls.io/github/flasd/whatsapp-formatting?branch=master)
+[![npm version](https://badge.fury.io/js/whatsapp-formatting.svg)](https://www.npmjs.com/package/whatsapp-formatting)
+[![npm downloads per month](https://img.shields.io/npm/dm/whatsapp-formatting.svg)](https://www.npmjs.com/package/whatsapp-formatting)
 
 What if you could use an awesome text formatting syntax that millions of people are already used to in your app? Oh wait! You can! cue Whatsapp formatting. You can use \*bold*, \_italic_ or \~strike~.
 
