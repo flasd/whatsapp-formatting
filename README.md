@@ -8,16 +8,16 @@ What if you could use an awesome text formatting syntax that millions of people 
 
 ## Installation
 ```shell
-$ yarn add whatsapp-formatting
+$ yarn add @flasd/whatsapp-formatting
 
 // or if you are feeling old school
-$ npm install whatsapp-formatting
+$ npm install @flasd/whatsapp-formatting
 ```
 
 ## Usage
 The API is very very simple.
 ```javascript
-import { format } from 'whatsapp-formating';
+import { format } from '@flasd/whatsapp-formating';
 
 format('*hello* _wolrd_');
 // « '<strong>hello</strong> <i>world</i>'
@@ -33,7 +33,7 @@ string
 ```
 You can mix and match all of the formatters. OH! And you can customize the formatting rules if you want to:
 ```javascript
-import { format, whatsappRules } from 'whatsapp-formating';
+import { format, whatsappRules } from '@flasd/whatsapp-formating';
 
 const customRules = [
   ...whatsappRules,
