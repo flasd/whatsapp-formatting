@@ -4,7 +4,7 @@
 [![npm version](https://badge.fury.io/js/whatsapp-formatting.svg)](https://www.npmjs.com/package/whatsapp-formatting)
 [![npm downloads per month](https://img.shields.io/npm/dm/whatsapp-formatting.svg)](https://www.npmjs.com/package/whatsapp-formatting)
 
-What if you could use an awesome text formatting syntax that millions of people are already used to in your app? Oh wait! You can! cue Whatsapp formatting. You can use \*bold*, \_italic_ or \~strike~.
+What if you could use an awesome text formatting syntax that millions of people are already used to in your app? Oh wait! You can! cue Whatsapp formatting. You can use \*bold*, \_italic_ or \~strike~. (it's only 473 bytes gzip!)
 
 ## Installation
 ```shell
