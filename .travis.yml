@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - 8
+  - 12
+
+install:
+  - yarn install
+
+script:
+  - yarn build
+
+after_success:
+  - yarn coverage

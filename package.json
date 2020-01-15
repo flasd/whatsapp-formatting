@@ -10,14 +10,26 @@
   "main": "dist/index.umd.js",
   "module": "dist/index.js",
   "scripts": {
-    "prebuild": "rimraf ./dist",
+    "prebuild": "rimraf ./dist && yarn lint && yarn test",
     "build": "microbundle -f esm,umd --target node,web --strict --name whatsappFormatting",
-    "dev": "microbundle watch"
+    "dev": "microbundle watch",
+    "test": "jest",
+    "lint": "tslint src/**",
+    "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.25",
+    "coveralls": "^3.0.9",
+    "jest": "^24.9.0",
     "microbundle": "0.12.0-next.7",
     "rimraf": "^3.0.0",
+    "ts-jest": "^24.3.0",
     "tslint": "^5.20.1",
     "typescript": "^3.7.4"
+  },
+  "dependencies": {},
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
   }
 }
