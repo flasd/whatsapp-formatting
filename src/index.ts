@@ -85,7 +85,7 @@ function parseText(text: string, rules: IRule[]): string {
   return final.replace(/\n/gi, "<br>");
 }
 
-const defaultRules: IRule[] = [
+export const whatsappRules: IRule[] = [
   {
     closeTag: "</strong>",
     openTag: "<strong>",
@@ -104,5 +104,5 @@ const defaultRules: IRule[] = [
 ];
 
 export function format(text: string, rules?: IRule[]) {
-  return parseText(text, rules || defaultRules);
+  return parseText(text, rules || whatsappRules);
 }
