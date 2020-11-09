@@ -17,7 +17,7 @@ $ npm install @flasd/whatsapp-formatting
 ## Usage
 The API is very very simple.
 ```javascript
-import { format } from '@flasd/whatsapp-formating';
+import { format } from '@flasd/whatsapp-formatting';
 
 format('*hello* _wolrd_');
 // « '<strong>hello</strong> <i>world</i>'
@@ -33,7 +33,7 @@ string
 ```
 You can mix and match all of the formatters. OH! And you can customize the formatting rules if you want to:
 ```javascript
-import { format, whatsappRules } from '@flasd/whatsapp-formating';
+import { format, whatsappRules } from '@flasd/whatsapp-formatting';
 
 const customRules = [
   ...whatsappRules,
