@@ -11,6 +11,7 @@
   "module": "dist/index.js",
   "scripts": {
     "prebuild": "rimraf ./dist && yarn lint && yarn test",
+    "prepublishOnly": "yarn build",
     "build": "microbundle -f esm,umd --target node,web --strict --name whatsappFormatting && cpy ./dist/index.d.ts ./dist --rename=index.umd.d.ts && rimraf ./dist/*.test.*",
     "dev": "microbundle watch",
     "test": "jest",
