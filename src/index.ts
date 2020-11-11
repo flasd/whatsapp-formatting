@@ -1,4 +1,10 @@
-import { IRule, Wildcard } from "./types";
+export type Wildcard = "*" | "~" | "_" | "```" | string;
+
+export interface IRule {
+  wildcard: Wildcard;
+  openTag: string;
+  closeTag: string;
+}
 
 function isAplhanumeric(char: any): boolean {
   const x: number = `${char || ""}`.charCodeAt(0);
