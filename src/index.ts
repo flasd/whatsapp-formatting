@@ -24,24 +24,28 @@ function getIndexes(text: string, wildcard: Wildcard): number[] {
   const indices: number[] = [];
 
   for (let i = 0; i < text.length; i += 1) {
-    if (text[i] === wildcard) {
-      if (indices.length % 2) {
-        if (
-          text[i - 1] === " "
-          || isAplhanumeric(text[i + 1])
-        ) {
+    if (text[i] === wildcard[0]) {
+      const match: string = text.slice(i, i + wildcard.length);
+      
+      if (match === wildcard) {
+        if (indices.length % 2) {
+          if (
+            text[i - 1] === " "
+            || isAplhanumeric(text[i + 1])
+          ) {
+            break;
+          } else {
+            indices.push(i);
+          }
+        } else if (
+            typeof (text[i + 1]) === "undefined"
+            || text[i + 1] === " "
+            || isAplhanumeric(text[i - 1])
+            ) {
           break;
         } else {
           indices.push(i);
         }
-      } else if (
-          typeof (text[i + 1]) === "undefined"
-          || text[i + 1] === " "
-          || isAplhanumeric(text[i - 1])
-          ) {
-        break;
-      } else {
-        indices.push(i);
       }
     } else if (text[i].charCodeAt(0) === 10 && indices.length % 2) {
       indices.pop();
@@ -67,9 +71,9 @@ function injectTags(text: string, indices: number[], rule: IRule): string {
     let v = value;
     v += e;
 
-    text = text.substr(0, v) + tag + text.substr(v + 1);
+    text = text.substr(0, v) + tag + text.substr(v + rule.wildcard.length);
 
-    e += (tag.length - 1);
+    e += (tag.length - rule.wildcard.length);
   });
 
   return text;
@@ -106,6 +110,11 @@ export const whatsappRules: IRule[] = [
     closeTag: "</s>",
     openTag: "<s>",
     wildcard: "~",
+  },
+  {
+    closeTag: "</span>",
+    openTag: "<span style='font-family: monospace'>",
+    wildcard: "```",
   },
 ];
 
