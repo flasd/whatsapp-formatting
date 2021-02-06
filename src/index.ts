@@ -112,8 +112,8 @@ export const whatsappRules: IRule[] = [
     wildcard: "~",
   },
   {
-    closeTag: "</p style='font-family: monospace'>",
-    openTag: "<p>",
+    closeTag: "</span style='font-family: monospace'>",
+    openTag: "<span>",
     wildcard: "```",
   },
 ];
