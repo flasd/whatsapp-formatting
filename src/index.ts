@@ -14,35 +14,34 @@ function isAplhanumeric(char: any): boolean {
   }
 
   return !!(
-    (x >= 65 && x <= 90)
-    || (x >= 97 && x <= 122)
-    || (x >= 48 && x <= 57)
+    (x >= 65 && x <= 90) ||
+    (x >= 97 && x <= 122) ||
+    (x >= 48 && x <= 57)
   );
 }
 
 function getIndexes(text: string, wildcard: Wildcard): number[] {
   const indices: number[] = [];
 
-  for (let i = 0; i < text.length; i += 1) {
-    if (text[i] === wildcard) {
+  for (let i = 0; i <= text.length - wildcard.length; i += 1) {
+    if (text.slice(i, i + wildcard.length) === wildcard) {
       if (indices.length % 2) {
-        if (
-          text[i - 1] === " "
-          || isAplhanumeric(text[i + 1])
-        ) {
+        if (text[i - 1] === " " || isAplhanumeric(text[i + wildcard.length])) {
           break;
         } else {
           indices.push(i);
         }
       } else if (
-          typeof (text[i + 1]) === "undefined"
-          || text[i + 1] === " "
-          || isAplhanumeric(text[i - 1])
-          ) {
+        typeof text[i + wildcard.length] === "undefined" ||
+        text[i + wildcard.length] === " " ||
+        isAplhanumeric(text[i - 1])
+      ) {
         break;
       } else {
         indices.push(i);
       }
+      // Skip ahead by wildcard length - 1 (loop will increment by 1)
+      i += wildcard.length - 1;
     } else if (text[i].charCodeAt(0) === 10 && indices.length % 2) {
       indices.pop();
     }
@@ -60,16 +59,14 @@ function injectTags(text: string, indices: number[], rule: IRule): string {
   let e = 0;
 
   indices.forEach((value, index) => {
-    const tag = (index % 2)
-      ? rule.closeTag
-      : rule.openTag;
+    const tag = index % 2 ? rule.closeTag : rule.openTag;
 
     let v = value;
     v += e;
 
-    text = text.substr(0, v) + tag + text.substr(v + 1);
+    text = text.slice(0, v) + tag + text.slice(v + rule.wildcard.length);
 
-    e += (tag.length - 1);
+    e += tag.length - rule.wildcard.length;
   });
 
   return text;
@@ -81,12 +78,9 @@ function execRule(text: string, rule: IRule): string {
 }
 
 function parseText(text: string, rules: IRule[]): string {
-  const final: string = rules.reduce(
-    (transformed, rule) => {
-      return execRule(transformed, rule);
-    },
-   text,
-  );
+  const final: string = rules.reduce((transformed, rule) => {
+    return execRule(transformed, rule);
+  }, text);
 
   return final.replace(/\n/gi, "<br>");
 }
@@ -106,6 +100,16 @@ export const whatsappRules: IRule[] = [
     closeTag: "</s>",
     openTag: "<s>",
     wildcard: "~",
+  },
+  {
+    closeTag: "</code>",
+    openTag: "<code>",
+    wildcard: "```",
+  },
+  {
+    closeTag: "</code>",
+    openTag: "<code>",
+    wildcard: "`",
   },
 ];
 
